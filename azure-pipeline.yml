@@ -23,3 +23,17 @@ stages:
         deploy:
           steps:
           - script: echo "Dev Deployment"
+
+- stage: CD_PROD
+  displayName: CD-Prod Deployment
+  jobs:
+  - deployment: CD_PROD_DEPLOY_JOB
+    displayName: Prod Deployment
+    pool:
+      name: MY-POOL
+    environment: prod-env
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - script: echo "Prod Deployment"
