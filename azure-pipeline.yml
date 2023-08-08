@@ -1,0 +1,25 @@
+trigger: none
+stages:
+- stage: CI_BUILD_STAGE
+  displayName: CI-Build
+  jobs:
+  - job: CI_BUILD_JOB
+    displayName: Restore & Build & Test & Publish
+    pool:
+      name: *MY-POOL-NAME*
+    steps:      
+      - script: echo "Restore & Build & Test & Publish"
+
+- stage: CD_DEV
+  displayName: CD-Dev Deployment
+  jobs:
+  - deployment: CD_DEV_DEPLOY_JOB
+    displayName: Dev Deployment
+    pool:
+      name: *MY-POOL-NAME*
+    environment: dev-env
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - script: echo "Dev Deployment"
