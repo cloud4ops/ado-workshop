@@ -6,7 +6,7 @@ stages:
   - job: CI_BUILD_JOB
     displayName: Restore & Build & Test & Publish
     pool:
-      name: *MY-POOL-NAME*
+      name: MY-POOL
     steps:      
       - script: echo "Restore & Build & Test & Publish"
 
@@ -16,7 +16,7 @@ stages:
   - deployment: CD_DEV_DEPLOY_JOB
     displayName: Dev Deployment
     pool:
-      name: *MY-POOL-NAME*
+      name: MY-POOL
     environment: dev-env
     strategy:
       runOnce:
